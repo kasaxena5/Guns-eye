@@ -19,18 +19,38 @@ public class PlayerController : MonoBehaviour
 
     // PlayerControl Actions
     private InputAction moveAction;
-    private InputAction lookAction;
     private InputAction jumpAction;
+    private InputAction shootAction;
 
 
-    private void Start()
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         cameraTransform = Camera.main.transform;
         moveAction = playerInput.actions["Move"];
-        lookAction = playerInput.actions["Look"];
         jumpAction = playerInput.actions["Jump"];
+        shootAction = playerInput.actions["Shoot"];
+    }
+
+    private void OnEnable()
+    {
+        shootAction.performed += _ => ShootGun();
+    }
+
+    private void OnDisable()
+    {
+        shootAction.performed -= _ => ShootGun();
+    }
+
+    private void ShootGun()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
+        {
+
+        }
+
     }
 
     void Update()
