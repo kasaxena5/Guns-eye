@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,29 +7,47 @@ public class BulletController : MonoBehaviour
 {
     [Header("Configs")]
     [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private float jumpHeight = 1.0f;
-    [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float lifetime = 5f;
+    
 
-    // Required components and global variables
+    // Required components
     private CharacterController controller;
-    private PlayerInput playerInput;
     private Transform cameraTransform;
-    private Vector3 playerVelocity;
+    private Canvas bulletCanvas;
+    private float remainingLife;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        playerInput = GetComponent<PlayerInput>();
         cameraTransform = Camera.main.transform;
+        StartCoroutine(UpdateBulletLifetime());
     }
 
-    // Update is called once per frame
+    IEnumerator UpdateBulletLifetime()
+    {
+        remainingLife = lifetime;
+        while(remainingLife >= 0)
+        {
+            remainingLife -= Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject != null)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     void Update()
     {
+        // Move the player forward
         controller.Move(cameraTransform.forward.normalized * Time.deltaTime * playerSpeed);
-
-
 
         // Rotate towards camera direction
         float targetAngle = cameraTransform.eulerAngles.y;
