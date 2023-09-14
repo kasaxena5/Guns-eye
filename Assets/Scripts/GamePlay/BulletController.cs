@@ -9,6 +9,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float lifetime = 5f;
+    [SerializeField] private Event bulletDestroyed;
     
 
     // Required components
@@ -33,6 +34,7 @@ public class BulletController : MonoBehaviour
             yield return null;
         }
 
+        bulletDestroyed.RaiseEvent();
         Destroy(this.gameObject);
     }
 
@@ -40,6 +42,7 @@ public class BulletController : MonoBehaviour
     {
         if(collision.gameObject != null)
         {
+            bulletDestroyed.RaiseEvent();
             Destroy(this.gameObject);
         }
     }

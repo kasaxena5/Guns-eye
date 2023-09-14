@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SandboxScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 57a8445619e57b541886273555e72942
+  - enabled: 1
+    path: Assets/Scenes/InstructionScene.unity
+    guid: 9ad123455e7461645a52833b17ae1f51
+  - enabled: 1
+    path: Assets/Scenes/GameOverMenuScene.unity
+    guid: dad7d3b052d7fd64bb41eb563b0a7525
   m_configObjects: {}

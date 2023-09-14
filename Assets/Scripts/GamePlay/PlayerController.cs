@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
@@ -9,11 +10,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float rotationSpeed = 5f;
-    
+    [SerializeField] private CinemachineVirtualCamera shootVirtualCamera;
+    [SerializeField] private Transform barrelTransform;
+    [SerializeField] private BulletController bulletPrefab;
+    [SerializeField] private Event bulletSpawned;
+
+
     // Required components and global variables
     private CharacterController controller;
     private PlayerInput playerInput;
     private Transform cameraTransform;
+    
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
@@ -45,12 +52,10 @@ public class PlayerController : MonoBehaviour
 
     private void ShootGun()
     {
-        RaycastHit hit;
-        if(Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
-        {
-
-        }
-
+        BulletController bullet = Instantiate(bulletPrefab, barrelTransform);
+        shootVirtualCamera.Follow = bullet.gameObject.transform;
+        shootVirtualCamera.LookAt = bullet.gameObject.transform;
+        bulletSpawned.RaiseEvent();
     }
 
     void Update()
