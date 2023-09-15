@@ -23,6 +23,7 @@ public class SwitchVCam : MonoBehaviour
     {
         aimAction = playerInput.actions["Aiming"];
         shootAction = playerInput.actions["Shoot"];
+        SetCanvas();
     }
 
     private void OnEnable()
@@ -64,13 +65,13 @@ public class SwitchVCam : MonoBehaviour
     
     public void StartShoot()
     {
-        shootVirtualCamera.Priority += 3 * priorityBoostAmount;
+        shootVirtualCamera.Priority += 10 * priorityBoostAmount;
         SetCanvas();
     }
 
     public void CancelShoot()
     {
-        shootVirtualCamera.Priority -= 3 * priorityBoostAmount;
+        shootVirtualCamera.Priority -= 10 * priorityBoostAmount;
         SetCanvas();
     }
 

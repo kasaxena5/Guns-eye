@@ -9,40 +9,40 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] EnemyBehaviour enemyPrefab;
 
-    [Header("Rock Configs")]
-    [SerializeField] float maxRockSize;
-    [SerializeField] float minRockSize;
-    [SerializeField] float maxRockInitialSpeed;
-    [SerializeField] float minRockInitialSpeed;
-    [SerializeField] float minRockSpawnWaitTime;
-    [SerializeField] float maxRockSpawnWaitTime;
+    [Header("Enemy Configs")]
+    [SerializeField] float initialSpeed;
+    [SerializeField] float spawnWaitTime;
+    [SerializeField] float progressionDelta;
+    [SerializeField] float progressionTime;
 
     void Start()
     {
-        EnemyBehaviour enemy = Instantiate(enemyPrefab, spawnTransform.position + new Vector3(Random.Range(-5, 5), 0, 0), Quaternion.identity);
-
-        float speed = Random.Range(minRockInitialSpeed, maxRockInitialSpeed);
-        Vector2 randDirection = Random.insideUnitCircle;
-        Vector3 direction = new Vector3(randDirection.x, 0, randDirection.y);
-        enemy.Initialize(direction, speed, target);
-        //StartCoroutine(CubeEnemySpawner());
+        StartCoroutine(Progression());
+        StartCoroutine(CubeEnemySpawner());
     }
 
     IEnumerator CubeEnemySpawner()
     {
         while (true)
         {
-            /*
-            float spawnWaitTime = Random.Range(minBatSpawnWaitTime, maxBatSpawnWaitTime);
+            EnemyBehaviour enemy = Instantiate(enemyPrefab, spawnTransform.position + new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)), Quaternion.identity);
 
-            BatEnemy bat = Instantiate(batPrefab, batSpawner.position + new Vector3(Random.Range(-5, 5), 0, 0), Quaternion.identity);
-
-            float speed = Random.Range(minBatInitialSpeed, maxBatInitialSpeed);
-            Vector2 direction = Random.insideUnitCircle;
-            bat.Initialize(direction, speed, batTarget);
-
+            float speed = initialSpeed;
+            Vector2 randDirection = Random.insideUnitCircle;
+            Vector3 direction = new Vector3(randDirection.x, 0, randDirection.y);
+            enemy.Initialize(direction, speed, target);
             yield return new WaitForSeconds(spawnWaitTime);
-            */
+
+        }
+    }
+
+    IEnumerator Progression()
+    {
+        while(true)
+        {
+            initialSpeed += progressionDelta;
+            spawnWaitTime -= progressionDelta;
+            yield return new WaitForSeconds(progressionTime);
         }
     }
 }

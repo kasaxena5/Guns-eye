@@ -10,6 +10,7 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float lifetime = 5f;
     [SerializeField] private BulletStats bulletStats;
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Event bulletDestroyed;
     
 
@@ -43,10 +44,17 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject != null)
+        if(collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {
-            bulletDestroyed.RaiseEvent();
-            Destroy(this.gameObject);
+            if (collision.gameObject.TryGetComponent(out EnemyBehaviour _))
+            {
+                playerStats.score += 100;
+            }
+            else
+            {
+                bulletDestroyed.RaiseEvent();
+                Destroy(this.gameObject);
+            }
         }
     }
 
