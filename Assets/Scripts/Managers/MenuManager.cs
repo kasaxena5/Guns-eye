@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void StartGame()
     {
         SceneLoader.Instance.currentScene = "InstructionScene";

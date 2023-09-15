@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
@@ -10,12 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float cooldownRate;
     [SerializeField] private CinemachineVirtualCamera shootVirtualCamera;
     [SerializeField] private Transform barrelTransform;
     [SerializeField] private BulletController bulletPrefab;
     [SerializeField] private ParticleSystem barrelExplosion;
     [SerializeField] private Event bulletSpawned;
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] BulletStats bulletStats;
 
 
     // Required components and global variables
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour
     
     private Vector3 playerVelocity;
     private bool groundedPlayer;
+    private Coroutine cooldownCoroutine;
 
     // PlayerControl Actions
     private InputAction moveAction;
@@ -54,11 +59,28 @@ public class PlayerController : MonoBehaviour
 
     private void ShootGun()
     {
-        barrelExplosion.Play();
-        BulletController bullet = Instantiate(bulletPrefab, barrelTransform);
-        shootVirtualCamera.Follow = bullet.gameObject.transform;
-        shootVirtualCamera.LookAt = bullet.gameObject.transform;
-        bulletSpawned.RaiseEvent();
+        if (bulletStats.cooldown > 0.9f)
+        {
+            barrelExplosion.Play();
+            BulletController bullet = Instantiate(bulletPrefab, barrelTransform);
+            shootVirtualCamera.Follow = bullet.gameObject.transform;
+            shootVirtualCamera.LookAt = bullet.gameObject.transform;
+            bulletSpawned.RaiseEvent();
+            if(cooldownCoroutine != null)
+                StopCoroutine(cooldownCoroutine);
+            cooldownCoroutine = StartCoroutine(ResetCooldown());
+        }
+    }
+
+    IEnumerator ResetCooldown()
+    {
+        bulletStats.cooldown = 0;
+        while(bulletStats.cooldown < 1)
+        {
+            bulletStats.cooldown += Time.deltaTime * cooldownRate;
+            yield return null;
+        }
+        bulletStats.cooldown = 1;
     }
 
     void Update()
@@ -96,8 +118,11 @@ public class PlayerController : MonoBehaviour
         playerStats.health = Mathf.Max(playerStats.health - damage, 0);
         if (playerStats.health <= 0)
         {
-            SceneLoader.Instance.currentScene = "GameOverMenuScene";
-            SceneLoader.Instance.StartScene();
+            if (SceneLoader.Instance.currentScene == "SandboxScene")
+            {
+                SceneLoader.Instance.currentScene = "GameOverMenuScene";
+                SceneLoader.Instance.StartScene();
+            }
         }
     }
 }

@@ -37,6 +37,9 @@ public class UIManager : MonoBehaviour
         playerStats.health = 1f;
         bulletStats.cooldown = 1f;
         bulletStats.lifetime = 1f;
+        playerStats.score = 0;
+
+        Cursor.visible = false;
     }
 
     private void Update()

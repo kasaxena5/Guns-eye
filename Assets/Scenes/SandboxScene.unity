@@ -4514,6 +4514,7 @@ MonoBehaviour:
   jumpHeight: 2
   gravityValue: -9.81
   rotationSpeed: 0.8
+  cooldownRate: 0.2
   shootVirtualCamera: {fileID: 1661392234}
   barrelTransform: {fileID: 89374354}
   bulletPrefab: {fileID: 2078858826516729750, guid: cfdff4c949707a849893bb6a41844c8d,
@@ -4521,6 +4522,7 @@ MonoBehaviour:
   barrelExplosion: {fileID: 1978724799}
   bulletSpawned: {fileID: 11400000, guid: f25402342dff1754b90e6518b1d5b504, type: 2}
   playerStats: {fileID: 11400000, guid: 89d9346b77eed964f8b26a24b6ca8800, type: 2}
+  bulletStats: {fileID: 11400000, guid: bf7bf97b8d158804393687c77d7215f0, type: 2}
 --- !u!143 &1240179826
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5809,9 +5811,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: -4791138744762754506, guid: c6c1564c55199ca4bba390d6b83cfcc7,
     type: 3}
   initialSpeed: 1
-  spawnWaitTime: 5
+  spawnWaitTime: 10
   progressionDelta: 0.1
-  progressionTime: 10
+  progressionTime: 20
 --- !u!4 &1718457932
 Transform:
   m_ObjectHideFlags: 0
@@ -7183,7 +7185,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: -4791138744762754506, guid: c6c1564c55199ca4bba390d6b83cfcc7,
     type: 3}
   initialSpeed: 1
-  spawnWaitTime: 5
+  spawnWaitTime: 10
   progressionDelta: 0.1
   progressionTime: 10
 --- !u!4 &2018502078
