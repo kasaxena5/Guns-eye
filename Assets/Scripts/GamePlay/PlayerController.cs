@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera shootVirtualCamera;
     [SerializeField] private Transform barrelTransform;
     [SerializeField] private BulletController bulletPrefab;
+    [SerializeField] private ParticleSystem barrelExplosion;
     [SerializeField] private Event bulletSpawned;
+    [SerializeField] PlayerStats playerStats;
 
 
     // Required components and global variables
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void ShootGun()
     {
+        barrelExplosion.Play();
         BulletController bullet = Instantiate(bulletPrefab, barrelTransform);
         shootVirtualCamera.Follow = bullet.gameObject.transform;
         shootVirtualCamera.LookAt = bullet.gameObject.transform;
@@ -86,5 +89,15 @@ public class PlayerController : MonoBehaviour
         float targetAngle = cameraTransform.eulerAngles.y;
         Quaternion rotation = Quaternion.Euler(0, targetAngle, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed);
+    }
+
+    public void InflictDamage(float damage)
+    {
+        playerStats.health = Mathf.Max(playerStats.health - damage, 0);
+        if (playerStats.health <= 0)
+        {
+            SceneLoader.Instance.currentScene = "GameOverMenuScene";
+            SceneLoader.Instance.StartScene();
+        }
     }
 }

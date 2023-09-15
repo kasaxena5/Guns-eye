@@ -7,24 +7,42 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] float transitionSpeed = 100;
+    [Header("Required Components")]
+    [SerializeField] PlayerStats playerStats;
+    [SerializeField] TMP_Text scoreText;
+    [SerializeField] Slider healthBar;
 
-    int score;
+
+    [Header("Configs")]
+    [SerializeField] float scoreTransitionSpeed = 100;
+
     float displayScore;
-    public TMP_Text scoreText;
+
+    public void Start()
+    {
+        healthBar.maxValue = 1;
+        healthBar.value = 1;
+        playerStats.health = 1f;
+    }
 
     private void Update()
     {
-        displayScore = Mathf.MoveTowards(displayScore, score, transitionSpeed * Time.deltaTime);
+        displayScore = Mathf.MoveTowards(displayScore, playerStats.score, scoreTransitionSpeed * Time.deltaTime);
         UpdateScoreDisplay();
+        UpdateHealthDisplay();
     }
     public void IncreaseScore(int amount)
     {
-        score += amount;
+        playerStats.score += amount;
     }
 
-    public void UpdateScoreDisplay()
+    private void UpdateScoreDisplay()
     {
         scoreText.text = string.Format("Score: {0:0000}", displayScore);
+    }
+
+    private void UpdateHealthDisplay()
+    {
+        healthBar.value = playerStats.health;
     }
 }
