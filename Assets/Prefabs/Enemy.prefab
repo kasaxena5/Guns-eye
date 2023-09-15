@@ -122,7 +122,8 @@ MonoBehaviour:
   speed: 2
   damage: 0.1
   forceMultiplier: 0.5
-  explodePrefab: {fileID: 0}
+  explodePrefab: {fileID: 198175801688348628, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4,
+    type: 3}
 --- !u!54 &5841593193522561569
 Rigidbody:
   m_ObjectHideFlags: 0
