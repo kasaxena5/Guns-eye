@@ -9,13 +9,13 @@ public class BulletController : MonoBehaviour
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float lifetime = 5f;
+    [SerializeField] private BulletStats bulletStats;
     [SerializeField] private Event bulletDestroyed;
     
 
     // Required components
     private CharacterController controller;
     private Transform cameraTransform;
-    private Canvas bulletCanvas;
     private float remainingLife;
 
     private void Awake()
@@ -28,9 +28,12 @@ public class BulletController : MonoBehaviour
     IEnumerator UpdateBulletLifetime()
     {
         remainingLife = lifetime;
+
+        bulletStats.lifetime = 1;
         while(remainingLife >= 0)
         {
             remainingLife -= Time.deltaTime;
+            bulletStats.lifetime = remainingLife / lifetime;
             yield return null;
         }
 

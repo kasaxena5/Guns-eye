@@ -9,6 +9,7 @@ public class SwitchVCam : MonoBehaviour
 
     [SerializeField] private Canvas thirdPersonCanvas;
     [SerializeField] private Canvas aimCanvas;
+    [SerializeField] private Canvas bulletCanvas;
 
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private CinemachineVirtualCamera thirdPersonVirtualCamera;
@@ -44,15 +45,19 @@ public class SwitchVCam : MonoBehaviour
         {
             aimCanvas.enabled = false;
             thirdPersonCanvas.enabled = false;
+            bulletCanvas.enabled = true;
+
         } else if(maxPriority == aimVirtualCamera.Priority)
         {
             aimCanvas.enabled = true;
             thirdPersonCanvas.enabled = false;
+            bulletCanvas.enabled = false;
         }
         else
         {
             aimCanvas.enabled = false;
             thirdPersonCanvas.enabled = true;
+            bulletCanvas.enabled = false;
         }
 
     }

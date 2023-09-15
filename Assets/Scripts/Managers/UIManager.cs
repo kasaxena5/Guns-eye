@@ -9,8 +9,12 @@ public class UIManager : MonoBehaviour
 {
     [Header("Required Components")]
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] BulletStats bulletStats;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] Slider healthBar;
+    [SerializeField] Slider coolDownBar;
+    [SerializeField] Slider lifetimeBar;
+
 
 
     [Header("Configs")]
@@ -22,7 +26,17 @@ public class UIManager : MonoBehaviour
     {
         healthBar.maxValue = 1;
         healthBar.value = 1;
+
+        coolDownBar.maxValue = 1;
+        coolDownBar.value = 1;
+
+        lifetimeBar.maxValue = 1;
+        lifetimeBar.value = 1;
+
+
         playerStats.health = 1f;
+        bulletStats.cooldown = 1f;
+        bulletStats.lifetime = 1f;
     }
 
     private void Update()
@@ -30,6 +44,8 @@ public class UIManager : MonoBehaviour
         displayScore = Mathf.MoveTowards(displayScore, playerStats.score, scoreTransitionSpeed * Time.deltaTime);
         UpdateScoreDisplay();
         UpdateHealthDisplay();
+        UpdateCooldownDisplay();
+        UpdateLifetimeDisplay();
     }
     public void IncreaseScore(int amount)
     {
@@ -44,5 +60,15 @@ public class UIManager : MonoBehaviour
     private void UpdateHealthDisplay()
     {
         healthBar.value = playerStats.health;
+    }
+
+    private void UpdateCooldownDisplay()
+    {
+        coolDownBar.value = bulletStats.cooldown;
+    }
+
+    private void UpdateLifetimeDisplay()
+    {
+        lifetimeBar.value = bulletStats.lifetime;
     }
 }

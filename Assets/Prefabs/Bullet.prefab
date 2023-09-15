@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 2078858826516729750}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,4 +299,5 @@ MonoBehaviour:
   playerSpeed: 20
   rotationSpeed: 5
   lifetime: 5
+  bulletStats: {fileID: 11400000, guid: bf7bf97b8d158804393687c77d7215f0, type: 2}
   bulletDestroyed: {fileID: 11400000, guid: 1ce6de891cf95f745be5ba873f924de7, type: 2}
