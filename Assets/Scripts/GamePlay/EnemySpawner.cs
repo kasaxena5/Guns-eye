@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
         Vector2 direction = Random.insideUnitCircle;
         Debug.Log(direction);
         enemy.Initialize(direction, speed, target);
-        StartCoroutine(CubeEnemySpawner());
+        //StartCoroutine(CubeEnemySpawner());
     }
 
     IEnumerator CubeEnemySpawner()

@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 1
+  forceMultiplier: 1
   explodePrefab: {fileID: 0}
 --- !u!54 &7037428733736722569
 Rigidbody:

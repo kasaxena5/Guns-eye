@@ -7,22 +7,22 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Configs")]
     [SerializeField] float speed;
     [SerializeField] float damage;
+    [SerializeField] float forceMultiplier;
 
     [Header("Prefabs")]
     [SerializeField] ParticleSystem explodePrefab;
 
    
     Transform target;
-    Rigidbody rb;
+    Vector3 velocity;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
     }
 
     public void Initialize(Vector3 direction, float speed, Transform target)
     {
-        rb.velocity = direction.normalized * speed;
+        velocity = direction.normalized * speed;
         this.speed = speed;
         this.target = target;
     }
@@ -31,9 +31,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         Vector3 seekDirection = (target.position - transform.position).normalized * speed;
         
-        Vector3 steerDirection = seekDirection - rb.velocity;
+        Vector3 steerDirection = seekDirection - velocity;
         steerDirection.y = 0;
-        rb.AddForce(steerDirection);
+        velocity += steerDirection * forceMultiplier * Time.deltaTime;
+
+        transform.Translate(velocity * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

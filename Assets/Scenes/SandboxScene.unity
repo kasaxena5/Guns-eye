@@ -3252,60 +3252,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132798579}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1149371791
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1149371793}
-  - component: {fileID: 1149371792}
-  m_Layer: 0
-  m_Name: EnemySpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1149371792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149371791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceec2fe385307fa42b90dd3bb8662ff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnTransform: {fileID: 1209953537}
-  target: {fileID: 1240179824}
-  enemyPrefab: {fileID: -4791138744762754506, guid: c6c1564c55199ca4bba390d6b83cfcc7,
-    type: 3}
-  maxRockSize: 0
-  minRockSize: 0
-  maxRockInitialSpeed: 0
-  minRockInitialSpeed: 0
-  minRockSpawnWaitTime: 0
-  maxRockSpawnWaitTime: 0
---- !u!4 &1149371793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149371791}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1173768108
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,7 +3729,7 @@ GameObject:
   - component: {fileID: 1240179830}
   m_Layer: 0
   m_Name: PlayerCapsule
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4929,6 +4875,60 @@ MonoBehaviour:
   AutoEnableInputs: 1
   XYAxis: {fileID: -8359956230057025915, guid: 7988ab7185d61ef4bb1b0d7a384f2038, type: 3}
   ZAxis: {fileID: 0}
+--- !u!1 &1718457930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1718457932}
+  - component: {fileID: 1718457931}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1718457931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718457930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceec2fe385307fa42b90dd3bb8662ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTransform: {fileID: 1209953537}
+  target: {fileID: 1240179824}
+  enemyPrefab: {fileID: -4791138744762754506, guid: c6c1564c55199ca4bba390d6b83cfcc7,
+    type: 3}
+  maxRockSize: 0
+  minRockSize: 0
+  maxRockInitialSpeed: 0
+  minRockInitialSpeed: 0
+  minRockSpawnWaitTime: 0
+  maxRockSpawnWaitTime: 0
+--- !u!4 &1718457932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718457930}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9859667, y: 7.314599, z: -0.70328426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1726079755
 GameObject:
   m_ObjectHideFlags: 0
@@ -6857,5 +6857,5 @@ SceneRoots:
   - {fileID: 1661392235}
   - {fileID: 152777439}
   - {fileID: 1840666743}
-  - {fileID: 1149371793}
   - {fileID: 1209953537}
+  - {fileID: 1718457932}
