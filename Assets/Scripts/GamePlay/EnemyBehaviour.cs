@@ -16,10 +16,6 @@ public class EnemyBehaviour : MonoBehaviour
     Transform target;
     Vector3 velocity;
 
-    void Awake()
-    {
-    }
-
     public void Initialize(Vector3 direction, float speed, Transform target)
     {
         velocity = direction.normalized * speed;
@@ -34,11 +30,11 @@ public class EnemyBehaviour : MonoBehaviour
         Vector3 steerDirection = seekDirection - velocity;
         steerDirection.y = 0;
         velocity += steerDirection * forceMultiplier * Time.deltaTime;
-
+        velocity = velocity.normalized * speed;
         transform.Translate(velocity * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
         {

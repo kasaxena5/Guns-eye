@@ -1323,7 +1323,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.02617695, y: 0, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 1.8475208, y: 2.4185052, z: -3.66686}
+  m_LocalPosition: {x: 2.642764, y: 2.4185052, z: -3.66686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1630,6 +1630,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527770479}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &539608400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 539608403}
+  - component: {fileID: 539608402}
+  - component: {fileID: 539608401}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &539608401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539608400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bfa5c3118ab998408433a07ffce159c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &539608402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539608400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f876c1206ffede640b21de5d5fe412b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingCanvasPrefab: {fileID: 6102887342848541399, guid: f8ba6acdded5da24e9eabdf3dd9cc5e7,
+    type: 3}
+  loadTime: 1
+  sceneState: 1
+  currentScene: SandboxScene
+--- !u!4 &539608403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539608400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &573019508
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,9 +3789,10 @@ GameObject:
   - component: {fileID: 1240179828}
   - component: {fileID: 1240179829}
   - component: {fileID: 1240179830}
+  - component: {fileID: 1240179831}
   m_Layer: 0
   m_Name: PlayerCapsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3838,7 +3901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6bed1da0e00a04aa31147ae6600ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
+  playerSpeed: 6
   jumpHeight: 2
   gravityValue: -9.81
   rotationSpeed: 0.8
@@ -3981,6 +4044,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!54 &1240179831
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240179820}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1240496904
 GameObject:
   m_ObjectHideFlags: 0
@@ -4910,8 +5000,8 @@ MonoBehaviour:
     type: 3}
   maxRockSize: 0
   minRockSize: 0
-  maxRockInitialSpeed: 0
-  minRockInitialSpeed: 0
+  maxRockInitialSpeed: 2
+  minRockInitialSpeed: 3
   minRockSpawnWaitTime: 0
   maxRockSpawnWaitTime: 0
 --- !u!4 &1718457932
@@ -5769,7 +5859,7 @@ Transform:
   m_GameObject: {fileID: 1893640664}
   serializedVersion: 2
   m_LocalRotation: {x: 0.026176613, y: 0, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 1.5354952, y: 2.4974449, z: -2.2608008}
+  m_LocalPosition: {x: 2.1964307, y: 2.4974449, z: -2.2608008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6791,7 +6881,7 @@ PrefabInstance:
     - target: {fileID: 7509574568809980666, guid: c7663307117d25a4a8cff63382b534a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8475208
+      value: 2.642764
       objectReference: {fileID: 0}
     - target: {fileID: 7509574568809980666, guid: c7663307117d25a4a8cff63382b534a4,
         type: 3}
@@ -6859,3 +6949,4 @@ SceneRoots:
   - {fileID: 1840666743}
   - {fileID: 1209953537}
   - {fileID: 1718457932}
+  - {fileID: 539608403}

@@ -22,8 +22,8 @@ public class EnemySpawner : MonoBehaviour
         EnemyBehaviour enemy = Instantiate(enemyPrefab, spawnTransform.position + new Vector3(Random.Range(-5, 5), 0, 0), Quaternion.identity);
 
         float speed = Random.Range(minRockInitialSpeed, maxRockInitialSpeed);
-        Vector2 direction = Random.insideUnitCircle;
-        Debug.Log(direction);
+        Vector2 randDirection = Random.insideUnitCircle;
+        Vector3 direction = new Vector3(randDirection.x, 0, randDirection.y);
         enemy.Initialize(direction, speed, target);
         //StartCoroutine(CubeEnemySpawner());
     }
